@@ -110,7 +110,7 @@ function Navbar({ toggleTheme, currentTheme }) {
         </div>
         <Link
           to={"/"}
-          className="flex items-center gap-x-2 text-sm sm:text-3xl font-semibold text-neutral"
+          className="flex items-center gap-x-2 text-sm sm:text-4xl font-semibold text-neutral"
         >
           <img className="w-20 h-20" src={logo} alt="" />
           <p>ShareBites</p>
