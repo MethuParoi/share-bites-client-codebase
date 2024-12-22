@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div className="bg-secondary text-neutral p-10 flex flex-col items-center">
       <footer className="footer flex lg:flex-row flex-col items-start justify-center gap-x-72">
-        <aside className="flex gap-x-4 items-center">
+        <aside className="flex sm:flex-row flex-col sm:gap-x-4 sm:items-center">
           <img className="w-32 h-32" src={logo} alt="" />
           <div>
             <h2 className="text-3xl font-semibold">ShareBites</h2>

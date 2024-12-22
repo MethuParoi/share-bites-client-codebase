@@ -113,7 +113,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           className="flex items-center gap-x-2 text-sm sm:text-4xl font-semibold text-neutral"
         >
           <img className="w-20 h-20" src={logo} alt="" />
-          <p>ShareBites</p>
+          <p className="hidden md:block">ShareBites</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
