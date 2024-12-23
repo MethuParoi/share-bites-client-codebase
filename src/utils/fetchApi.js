@@ -7,17 +7,40 @@ export function useAllFood() {
     data: allFood,
     error,
   } = useQuery({
-    queryKey: ["cabins"],
+    queryKey: ["allFood"],
     queryFn: async () => {
       const response = await axios.get(
         "https://assignment-11-server-orpin-beta.vercel.app/get-food"
       );
-      if (!response.ok) {
+      if (!response.status !== 200) {
         throw new Error("Network response was not ok");
       }
-      return response.json();
+      return response.data;
     },
   });
 
   return { isLoading, allFood, error };
 }
+
+export function useFeaturedFood() {
+  const {
+    isLoading,
+    data: featuredFood,
+    error,
+  } = useQuery({
+    queryKey: ["featuredFood"],
+    queryFn: async () => {
+      const response = await axios.get(
+        "https://assignment-11-server-orpin-beta.vercel.app/get-featured-food"
+      );
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+      return response.data;
+    },
+  });
+
+  return { isLoading, featuredFood, error };
+}
+
+
