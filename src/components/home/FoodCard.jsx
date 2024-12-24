@@ -1,6 +1,6 @@
 import { CiCalendarDate } from "react-icons/ci";
-import { FaRegStarHalfStroke } from "react-icons/fa6";
-import { TfiTimer } from "react-icons/tfi";
+import { AiFillProduct } from "react-icons/ai";
+import { IoLocation } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 function FoodCard({ food }) {
@@ -19,30 +19,24 @@ function FoodCard({ food }) {
       </figure>
       <div className="card-body">
         <h2 className="card-title line-clamp-1">{food.food_name}</h2>
-        {/* <div className="flex gap-x-2 mt-1">
-          {movie.genre &&
-            movie.genre.map((genre) => (
-              <div
-                key={genre}
-                className="badge badge-secondary bg-green-200 border-transparent text-gray-800"
-              >
-                {genre}
-              </div>
-            ))}
-        </div> */}
+        <div className="flex items-center justify-around mt-1">
+          <div className="badge badge-secondary bg-green-200 border-transparent text-gray-800">
+            {food.food_status === "available" ? "Available" : "Requested"}
+          </div>
+          <div className="flex items-center gap-x-2">
+            <IoLocation className="text-xl" />
+            <p className="text-gray-600">{food.pickup_location}</p>
+          </div>
+        </div>
 
         <div className="flex items-center justify-around my-2">
           <div className="flex items-center gap-x-2">
-            <TfiTimer className="text-xl" />
+            <AiFillProduct className="text-xl" />
             <p className="text-gray-600">{food.food_quantity} unit</p>
           </div>
 
           <div className="flex items-center gap-x-2">
             <CiCalendarDate className="text-xl" />
-            <p className="text-gray-600">{food.pickup_location}</p>
-          </div>
-          <div className="flex items-center gap-x-2">
-            <FaRegStarHalfStroke className="text-xl" />
             <p className="text-gray-600">{food.expired_date}</p>
           </div>
         </div>

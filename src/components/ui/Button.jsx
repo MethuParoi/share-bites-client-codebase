@@ -14,7 +14,7 @@ function Button({ label, onClick, type }) {
     return (
       <button
         onClick={onClick}
-        className="text-white text-md lg:text-xl font-semibold bg-primary hover:bg-secondary px-3 lg:px-5 py-2 rounded-3xl w-[80%] sm:w-56"
+        className="text-white text-md lg:text-xl font-semibold bg-secondary hover:bg-accent px-3 lg:px-5 py-2 rounded-3xl w-[80%] sm:w-56"
       >
         {label}
       </button>
@@ -25,7 +25,7 @@ function Button({ label, onClick, type }) {
     return (
       <button
         onClick={onClick}
-        className="text-white text-md font-semibold bg-primary hover:bg-primaryHover px-2 py-2 rounded-3xl"
+        className="text-white text-md font-semibold bg-secondary hover:bg-accent px-2 py-2 rounded-3xl"
       >
         {label}
       </button>

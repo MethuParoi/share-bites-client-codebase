@@ -5,8 +5,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
+import Loader from "../components/ui/Loader/Loader";
 
 const AddFood = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const location = useLocation();
   const donator_email = user.email;
@@ -26,6 +28,7 @@ const AddFood = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setIsLoading(true);
     const foodData = {
       ...data,
       donator_name,
@@ -42,6 +45,7 @@ const AddFood = () => {
       .then((res) => {
         if (res.status === 200) {
           toast.success("Food added successfully!");
+          setIsLoading(false);
         }
       })
       .catch((err) => {
@@ -51,6 +55,9 @@ const AddFood = () => {
 
   return (
     <div className="sm:p-6 p-2  mx-auto mb-10">
+      <div className="z-50 fixed top-1/2 left-1/2">
+        {isLoading && <Loader />}
+      </div>
       <h2 className="text-3xl font-semibold text-center  my-8 border-b-2 border-gray-400 w-[250px] mx-auto">
         Add Food
       </h2>
@@ -185,9 +192,10 @@ const AddFood = () => {
         <div className="my-8">
           <button
             type="submit"
-            className="mt-6 px-4 w-[310px] py-2 bg-primary text-white rounded hover:bg-secondary"
+            className="mt-6 px-4 w-[310px] py-2 bg-secondary text-white rounded hover:bg-accent"
+            disabled={isLoading}
           >
-            Add Movie
+            Add Food
           </button>
         </div>
       </form>
