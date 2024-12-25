@@ -60,7 +60,7 @@ const AddFood = () => {
 
         // PATCH request to update user food
         await axios.patch(
-          `${link}/update-user-food/${email}`,
+          `${link}/add-existing-user-food/${email}`,
           { foods: updatedFoods },
           { withCredentials: true }
         );

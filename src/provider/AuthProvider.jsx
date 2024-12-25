@@ -20,9 +20,8 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
   //link
-  const [link, setLink] = useState(
-    "https://assignment-11-server-orpin-beta.vercel.app"
-  );
+  const [link, setLink] = useState("http://localhost:3000");
+  // "https://assignment-11-server-orpin-beta.vercel.app"
 
   const createUser = (email, password) => {
     setLoading(true);
