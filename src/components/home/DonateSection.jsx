@@ -2,7 +2,7 @@ import bgImg from "../../assets/home/card-img-1.jpg";
 const DonateSection = () => {
   return (
     <div
-      className="xl:max-w-[1300px] mx-auto flex md:flex-row items-center md:justify-around flex-col gap-y-8 md:gap-y-0 py-16"
+      className="xl:max-w-[1300px] mx-auto flex md:flex-row items-center md:gap-x-10 md:justify-around flex-col gap-y-8 md:gap-y-0 py-16"
       id="donation-section"
     >
       <div className="w-[90vw] md:w-[40vw] relative">
