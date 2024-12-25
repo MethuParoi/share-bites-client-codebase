@@ -6,6 +6,8 @@ import Loader from "../components/ui/Loader/Loader";
 import { useFeaturedFood } from "../utils/fetchApi";
 import FoodCard from "../components/home/FoodCard";
 import Button from "../components/ui/Button";
+import DonateSection from "../components/home/DonateSection";
+import VolunteerSection from "../components/home/VolunteerSection";
 
 const Home = () => {
   const { isLoading, featuredFood, error } = useFeaturedFood();
@@ -36,6 +38,14 @@ const Home = () => {
             onClick={() => navigate("/available-foods")}
           />
         </div>
+      </div>
+      {/* donation section */}
+      <div className=" bg-gray-200 w-screen">
+        <DonateSection />
+      </div>
+      {/* volunteer section */}
+      <div>
+        <VolunteerSection />
       </div>
     </div>
   );

@@ -32,8 +32,10 @@ const ManageFood = () => {
     const fetchFood = async () => {
       try {
         const [allFoodRes, addedFoodRes] = await Promise.all([
-          axios.get(`${link}/get-food`),
-          axios.get(`${link}/get-user-food/${user.email}`),
+          axios.get(`${link}/get-food`, { withCredentials: true }),
+          axios.get(`${link}/get-user-food/${user.email}`, {
+            withCredentials: true,
+          }),
         ]);
 
         const allFood = allFoodRes.data;

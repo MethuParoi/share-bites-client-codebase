@@ -7,7 +7,9 @@ const FoodRow = ({ food, setFoodId, set_id, setFood_id, setFoodDetail }) => {
 
   const fetchFoodDetails = async () => {
     try {
-      const response = await axios.get(`${link}/get-food-details/${food._id}`);
+      const response = await axios.get(`${link}/get-food-details/${food._id}`, {
+        withCredentials: true,
+      });
       setFoodDetail(response.data);
     } catch (error) {
       console.error("Error fetching food details:", error);

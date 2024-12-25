@@ -16,7 +16,11 @@ const HeroDesc = ({ title, tag }) => {
       <Button
         type="primary"
         label={"Learn More"}
-        onClick={() => console.log("clicked")}
+        onClick={() => {
+          document
+            .getElementById("donation-section")
+            .scrollIntoView({ behavior: "smooth" });
+        }}
       />
     </div>
   );
