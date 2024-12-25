@@ -15,7 +15,7 @@ const Home = () => {
     const pageTitle = "ShareBites | Home";
     document.title = pageTitle;
   }, [location]);
-  console.log(featuredFood);
+  // console.log(featuredFood);
 
   return (
     <div className="relative">

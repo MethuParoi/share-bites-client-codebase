@@ -10,6 +10,7 @@ import {
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase.init";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
@@ -18,6 +19,10 @@ function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  //link
+  const [link, setLink] = useState(
+    "https://assignment-11-server-orpin-beta.vercel.app"
+  );
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -33,20 +38,21 @@ function AuthProvider({ children }) {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        if(currentUser?.email){
-          const user = {email: currentUser.email}
+        if (currentUser?.email) {
+          const user = { email: currentUser.email };
 
           axios
-            .post(
-              "http://localhost:3000/jwt-auth",
-              user,
-              { withCredentials: true }
-            )
+            .post(`${link}/jwt-auth`, user, {
+              withCredentials: true,
+            })
             .then((response) => {
-              console.log(response);
+              toast.success("user authenticated successfully!");
+              // console.log(response);
             })
             .catch((error) => {
-              console.log(error);
+              toast.success("user authenticated failed!");
+
+              // console.log(error);
             });
         }
       } else {
@@ -63,11 +69,16 @@ function AuthProvider({ children }) {
 
   const logoutUser = () => {
     setLoading(true);
-    axios.post("http://localhost:3000/logout", {}, {withCredentials: true}).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    });
+    axios
+      .post(`${link}/logout`, {}, { withCredentials: true })
+      .then((response) => {
+        toast.success("Logged out successfully!");
+        // console.log(response);
+      })
+      .catch((error) => {
+        toast.error("An error occurred during logout.");
+        // console.log(error);
+      });
     return signOut(auth);
   };
 
@@ -83,6 +94,7 @@ function AuthProvider({ children }) {
   const authInfo = {
     user,
     loading,
+    link,
     filteredMovies,
     setFilteredMovies,
     createUser,

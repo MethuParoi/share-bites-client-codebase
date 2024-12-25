@@ -3,6 +3,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FaMoon } from "react-icons/fa6";
+import { MdWbSunny } from "react-icons/md";
 import logo from "../../assets/logo/logo.png";
 
 function Navbar({ toggleTheme, currentTheme }) {
@@ -113,7 +114,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           className="flex items-center gap-x-2 text-sm sm:text-4xl font-semibold text-neutral"
         >
           <img className="w-20 h-20" src={logo} alt="" />
-          <p className="hidden md:block">ShareBites</p>
+          <p className="hidden md:block lg:hidden xl:block">ShareBites</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -177,7 +178,7 @@ function Navbar({ toggleTheme, currentTheme }) {
             user ? handleLogout() : null;
             user ? navigate("/") : navigate("/login");
           }}
-          className="text-neutral dark:text-white hover:text-gray-800 btn bg-primary border-transparent hover:bg-accent hidden md:block"
+          className="text-gray-600 dark:text-white hover:text-gray-800 btn bg-primary border-transparent hover:bg-accent hidden md:block"
         >
           {user ? "Logout" : "Login"}
         </button>
@@ -186,7 +187,7 @@ function Navbar({ toggleTheme, currentTheme }) {
             onClick={() => {
               navigate("/signup");
             }}
-            className="text-neutral dark:text-white hover:text-gray-800 btn bg-primary border-transparent hover:bg-accent hidden md:block ml-4"
+            className="text-gray-600 dark:text-white hover:text-gray-800 btn bg-primary border-transparent hover:bg-accent hidden md:block ml-4"
           >
             Signup
           </button>
@@ -205,7 +206,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           </div>
         )}
         {showUserName && (
-          <div className="text-neutral dark:text-white font-medium text-xl btn bg-primary border-transparent hover:bg-accent absolute top-1 right-44">
+          <div className="text-gray-600 dark:text-white font-medium text-xl btn bg-primary border-transparent hover:bg-accent absolute top-1 right-44">
             {user.displayName}
           </div>
         )}
@@ -213,12 +214,17 @@ function Navbar({ toggleTheme, currentTheme }) {
           onClick={toggleTheme}
           className="flex flex-col items-center ml-4"
         >
-          <div className="w-8 h-8 rounded-[50%] flex items-center justify-center bg-gray-200 dark:bg-gray-800">
-            <FaMoon className="text-2xl" />
+          <div
+            className={`w-10 h-10 rounded-[50%] flex items-center justify-center  dark:bg-gray-800 ${
+              currentTheme === "light" ? "bg-gray-700" : "bg-gray-200"
+            }`}
+          >
+            {currentTheme === "light" ? (
+              <FaMoon className="text-3xl text-gray-200" />
+            ) : (
+              <MdWbSunny className="text-3xl text-gray-200" />
+            )}
           </div>
-          <p className="text-sm">
-            {currentTheme === "light" ? "Dark" : "Light"} Mode
-          </p>
         </button>
       </div>
     </div>

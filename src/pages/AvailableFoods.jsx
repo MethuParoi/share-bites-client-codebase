@@ -42,7 +42,7 @@ const AvailableFoods = () => {
       <div className="z-50 fixed top-1/2 left-1/2">
         {isLoading && <Loader />}
       </div>
-      <div className="xl:max-w-[1150px] mx-auto my-4 flex-col justify-center">
+      <div className="lg:max-w-[1000px] xl:max-w-[1150px] mx-auto my-4 flex-col justify-center">
         <div className="flex items-center justify-center">
           <input
             className="border-2 border-gray-400 rounded-lg shadow-lg h-10 w-[250px] sm:w-[350px] px-2"
@@ -62,7 +62,7 @@ const AvailableFoods = () => {
           </button>
         </div>
 
-        <div className="flex items-center justify-start gap-x-4">
+        <div className="flex items-center justify-center lg:justify-start gap-x-4">
           <button
             onClick={() => setSort(true)}
             className="bg-secondary hover:bg-accent text-white text-lg font-semibold px-2 py-1 rounded-lg mt-4 flex items-center gap-x-2"

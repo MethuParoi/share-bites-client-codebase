@@ -4,17 +4,19 @@ import { useLocation } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../provider/AuthProvider";
-import axios from "axios";
 import Loader from "../components/ui/Loader/Loader";
+import axios from "axios";
 
 const AddFood = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useContext(AuthContext);
+  const { link } = useContext(AuthContext);
   const location = useLocation();
   const donator_email = user.email;
   const donator_name = user.displayName;
   const donator_image = user.photoURL;
   const food_status = "available";
+  const food_id = Math.floor(Math.random() * 1000000);
 
   useEffect(() => {
     const pageTitle = "ShareBites | Add Food";
@@ -27,7 +29,7 @@ const AddFood = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setIsLoading(true);
     const foodData = {
       ...data,
@@ -35,23 +37,106 @@ const AddFood = () => {
       donator_email,
       donator_image,
       food_status,
+      food_id,
     };
-    // console.log(movieData);
-    axios
-      .post(
-        "https://assignment-11-server-orpin-beta.vercel.app/add-food",
-        foodData
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          toast.success("Food added successfully!");
-          setIsLoading(false);
-        }
-      })
-      .catch((err) => {
-        toast.error("An error occurred. Please try again.");
+
+    try {
+      // First POST request to add food
+      await axios.post(`${link}/add-food`, foodData, {
+        withCredentials: true,
       });
+
+      const { email } = user; // Ensure the `email` is coming from the correct source
+
+      // GET request to fetch user food
+      const res = await axios.get(`${link}/get-user-food/${email}`, {
+        withCredentials: true,
+      });
+      const existingFoods = res.data?.foods || [];
+
+      if (!existingFoods.includes(data.id)) {
+        const updatedFoods = [...existingFoods, food_id];
+        // console.log("id", data.id);
+
+        // PATCH request to update user food
+        await axios.patch(
+          `${link}/update-user-food/${email}`,
+          { foods: updatedFoods },
+          { withCredentials: true }
+        );
+      }
+      toast.success("Food added successfully!");
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+        const { email } = user; // Ensure email is defined here
+
+        // PUT request to add user food
+        await axios.put(
+          `${link}/add-user-food`,
+          { user_id: email, foods: [food_id] },
+          { withCredentials: true }
+        );
+        toast.success("Food added successfully!");
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  // const onSubmit = (data) => {
+  //   setIsLoading(true);
+  //   const foodData = {
+  //     ...data,
+  //     donator_name,
+  //     donator_email,
+  //     donator_image,
+  //     food_status,
+  //   };
+  //   // add food using tanstack query
+  //   //https://assignment-11-server-orpin-beta.vercel.app
+  //   axios
+  //     .post("http://localhost:3000/add-food", foodData, {
+  //       withCredentials: true,
+  //     })
+  //     .then(() => {
+  //       try {
+  //         const { email } = data.user; // Ensure the `email` is coming from the correct source
+  //         const res = axios.get(
+  //           `http://localhost:3000/get-user-food/${email}`,
+  //           { withCredentials: true }
+  //         );
+  //         const existingFoods = res.data?.foods || [];
+
+  //         if (!existingFoods.includes(data.id)) {
+  //           const updatedFoods = [...existingFoods, data.id];
+
+  //           axios.patch(
+  //             `http://localhost:3000/update-user-food/${email}`,
+  //             { foods: updatedFoods },
+  //             { withCredentials: true }
+  //           );
+  //         }
+  //         toast.success("Food added successfully!");
+  //       } catch (err) {
+  //         if (err.response && err.response.status === 404) {
+  //           const { email } = data.user; // Ensure email is defined here
+  //           axios.put(
+  //             `http://localhost:3000/add-user-food`,
+  //             { user_id: email, foods: [data.id] },
+  //             { withCredentials: true }
+  //           );
+  //           toast.success("Food added successfully!");
+  //         } else {
+  //           toast.error("An error occurred. Please try again.");
+  //         }
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       toast.error("An error occurred. Please try again.", err);
+  //     });
+  // };
 
   return (
     <div className="sm:p-6 p-2  mx-auto mb-10">
