@@ -85,59 +85,6 @@ const AddFood = () => {
     }
   };
 
-  // const onSubmit = (data) => {
-  //   setIsLoading(true);
-  //   const foodData = {
-  //     ...data,
-  //     donator_name,
-  //     donator_email,
-  //     donator_image,
-  //     food_status,
-  //   };
-  //   // add food using tanstack query
-  //   //https://assignment-11-server-orpin-beta.vercel.app
-  //   axios
-  //     .post("http://localhost:3000/add-food", foodData, {
-  //       withCredentials: true,
-  //     })
-  //     .then(() => {
-  //       try {
-  //         const { email } = data.user; // Ensure the `email` is coming from the correct source
-  //         const res = axios.get(
-  //           `http://localhost:3000/get-user-food/${email}`,
-  //           { withCredentials: true }
-  //         );
-  //         const existingFoods = res.data?.foods || [];
-
-  //         if (!existingFoods.includes(data.id)) {
-  //           const updatedFoods = [...existingFoods, data.id];
-
-  //           axios.patch(
-  //             `http://localhost:3000/update-user-food/${email}`,
-  //             { foods: updatedFoods },
-  //             { withCredentials: true }
-  //           );
-  //         }
-  //         toast.success("Food added successfully!");
-  //       } catch (err) {
-  //         if (err.response && err.response.status === 404) {
-  //           const { email } = data.user; // Ensure email is defined here
-  //           axios.put(
-  //             `http://localhost:3000/add-user-food`,
-  //             { user_id: email, foods: [data.id] },
-  //             { withCredentials: true }
-  //           );
-  //           toast.success("Food added successfully!");
-  //         } else {
-  //           toast.error("An error occurred. Please try again.");
-  //         }
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       toast.error("An error occurred. Please try again.", err);
-  //     });
-  // };
-
   return (
     <div className="sm:p-6 p-2  mx-auto mb-10">
       <div className="z-50 fixed top-1/2 left-1/2">

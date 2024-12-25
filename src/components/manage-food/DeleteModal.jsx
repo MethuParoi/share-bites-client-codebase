@@ -39,14 +39,4 @@ const DeleteModal = ({ onRemoveFood, foodId, _id }) => {
 
 export default DeleteModal;
 
-{
-  /* You can open the modal using document.getElementById('ID').showModal() method */
-}
-{
-  /* <button
-        className="btn"
-        onClick={() => document.getElementById("my_modal_3").showModal()}
-      >
-        open modal
-      </button> */
-}
+

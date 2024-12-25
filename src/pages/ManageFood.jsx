@@ -3,10 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import Loader from "../components/ui/Loader/Loader";
-import FoodCard from "../components/home/FoodCard";
 import FoodRow from "../components/manage-food/FoodRow";
 import DeleteModal from "../components/manage-food/DeleteModal";
 import { toast } from "react-toastify";
+import EditModal from "../components/manage-food/EditModal";
 
 const ManageFood = () => {
   const location = useLocation();
@@ -22,7 +22,10 @@ const ManageFood = () => {
   //food id for delete
   const [foodId, setFoodId] = useState(null);
   const [_id, set_id] = useState(null);
-  console.log("foodId", _id);
+  //food id for edit
+  const [foodDetail, setFoodDetail] = useState(null);
+  const [food_id, setFood_id] = useState(null);
+  const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
     // Fetch both movies and favorites in parallel
@@ -51,16 +54,13 @@ const ManageFood = () => {
 
     if (user?.email) {
       fetchFood();
-      // console.log("user food", addedFood);
     }
-  }, [user?.email]);
+  }, [user?.email, refetch]);
 
   const handleRemoveFood = async (foodId, _id) => {
     setAddedFood((prevFood) =>
       prevFood.filter((food) => food.food_id !== foodId)
     );
-
-    // console.log("inside", _id);
 
     try {
       await Promise.all([
@@ -76,9 +76,9 @@ const ManageFood = () => {
     }
   };
 
-  const handleEditFood = (foodId) => {
-    console.log("EDIT");
-  };
+  // const handleEditFood = (foodId) => {
+  //   console.log("EDIT");
+  // };
   return (
     <div>
       <div className="z-50 fixed top-1/2 left-1/2">{loading && <Loader />}</div>
@@ -93,8 +93,8 @@ const ManageFood = () => {
       )}
       {/* table */}
       {addedFood.length > 0 && (
-        <div className="w-[90%] xl:max-w-[1300px] mx-auto max-h-[500px] overflow-y-auto mb-20">
-          <div className="grid grid-cols-6 gap-y-16 justify-items-center w-[1000px]  xl:w-[1200px] mx-auto bg-primary p-4 rounded-xl">
+        <div className="w-[90%] xl:max-w-[1300px] mx-auto  overflow-x-scroll  mb-20">
+          <div className="grid grid-cols-6 gap-y-16 justify-items-center w-[1000px] xl:w-[1200px] max-h-[500px] overflow-y-auto overflow-x-scroll mx-auto bg-primary p-4 rounded-xl">
             <p className="text-lg xl:text-xl  font-semibold text-gray-600">
               Food Name
             </p>
@@ -112,20 +112,26 @@ const ManageFood = () => {
             </p>
           </div>
 
-          <div>
+          <div className="">
             {addedFood.map((food) => (
               <FoodRow
                 key={food.food_id}
                 food={food}
-                onEditFood={handleEditFood}
                 setFoodId={setFoodId}
                 set_id={set_id}
+                setFood_id={setFood_id}
+                setFoodDetail={setFoodDetail}
               />
             ))}
           </div>
         </div>
       )}
       <DeleteModal foodId={foodId} _id={_id} onRemoveFood={handleRemoveFood} />
+      <EditModal
+        food_id={food_id}
+        foodDetail={foodDetail}
+        setRefetch={setRefetch}
+      />
     </div>
   );
 };
