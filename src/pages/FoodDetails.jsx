@@ -7,6 +7,7 @@ import { AiFillProduct } from "react-icons/ai";
 import { CiCalendarDate } from "react-icons/ci";
 import { IoLocation } from "react-icons/io5";
 import Button from "../components/ui/Button";
+import RequestModal from "../components/food-details/RequestModal";
 
 const FoodDetails = () => {
   const location = useLocation();
@@ -30,11 +31,18 @@ const FoodDetails = () => {
   const [details, setDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  if (isLoading) {
+    return (
+      <div className="min-w-screen h-[70dvh]">
+        <div className="z-50 fixed top-1/2 left-1/2">
+          <Loader />{" "}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className=" min-w-screen flex md:flex-row flex-col md:gap-x-16 md:justify-center md:mt-16 md:mb-32">
-      <div className="z-50 fixed top-1/2 left-1/2">
-        {isLoading && <Loader />}
-      </div>
       <div>
         <img
           className="w-full h-80 object-cover
@@ -72,7 +80,12 @@ const FoodDetails = () => {
         </div>
         <p className="line-clamp-5 ">{details?.additional_notes}</p>
 
-        <div className="flex items-center sm:justify-start justify-center mt-4 mb-5 md:mb-0">
+        <div
+          onClick={() => {
+            document.getElementById("req_food_modal").showModal();
+          }}
+          className="flex items-center sm:justify-start justify-center mt-4 mb-5 md:mb-0"
+        >
           <Button label={"Request Food"} type={"standard"} onClick={() => {}} />
         </div>
 
@@ -91,6 +104,8 @@ const FoodDetails = () => {
           </div>
         </div>
       </div>
+
+      <RequestModal foodDetail={details} />
     </div>
   );
 };
