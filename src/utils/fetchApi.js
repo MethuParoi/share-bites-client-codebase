@@ -66,15 +66,19 @@ export function useSortedFood() {
 }
 
 // Mutation to delete food
-export function useDeleteFood() {
+export function useDeleteFood(foodId, user, link, _id) {
   const queryClient = useQueryClient();
 
   return useMutation(
-    async (food_id) => {
-      const response = await axios.delete(
-        `https://assignment-11-server-orpin-beta.vercel.app/delete-food/${food_id}`,
-        { withCredentials: true }
-      );
+    async (foodId, user, link, _id) => {
+      const response = await Promise.all([
+        axios.delete(`${link}/delete-user-food/${user}/${foodId}`, {
+          withCredentials: true,
+        }),
+        axios.delete(`${link}/delete-food/${_id}`, {
+          withCredentials: true,
+        }),
+      ]);
       return response.data;
     },
     {
