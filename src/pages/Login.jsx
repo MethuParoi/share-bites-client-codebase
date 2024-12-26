@@ -33,7 +33,7 @@ const Login = () => {
       navigate("/");
       toast.success("User logged in successfully!");
     } catch (error) {
-      toast.error(error.message);
+      toast.error("An error occurred while logging in");
       console.error("Error logging in:", error.message);
     }
   };
@@ -156,7 +156,7 @@ const Login = () => {
               Signup here
             </Link>
           </p>
-          <p className="text-sm text-center text-gray-600">
+          {/* <p className="text-sm text-center text-gray-600">
             Forgot Password?{" "}
             <Link
               to="/forgot-password"
@@ -165,7 +165,7 @@ const Login = () => {
             >
               Click to Reset
             </Link>
-          </p>
+          </p> */}
           <Link to="/" className="text-blue-500 hover:underline">
             Back to Home
           </Link>
