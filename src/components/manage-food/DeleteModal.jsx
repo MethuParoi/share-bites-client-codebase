@@ -23,9 +23,9 @@ const DeleteModal = ({ onRemoveFood, foodId, _id }) => {
           <button
             //   onClick={() => onRemoveFood(food)}
             onClick={() => {
+              toast.success("Food removed successfully!");
               onRemoveFood(foodId, _id);
               document.getElementById("my_modal_3").close();
-              toast.success("Food removed successfully!");
             }}
             className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg"
           >

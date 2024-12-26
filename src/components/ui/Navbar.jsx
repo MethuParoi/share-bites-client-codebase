@@ -17,7 +17,7 @@ function Navbar({ toggleTheme, currentTheme }) {
     if (user) {
       try {
         await logoutUser();
-        toast.success("User logged out successfully");
+        // toast.success("User logged out successfully");
         navigate("/"); // Navigate after successful logout
       } catch (error) {
         console.error("Error logging out:", error.message);

@@ -22,10 +22,14 @@ const FoodDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`${link}/get-food-details/${id}`).then((res) => {
-      setDetails(res.data);
-      setIsLoading(false);
-    });
+    axios
+      .get(`${link}/get-food-details/${id}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setDetails(res.data);
+        setIsLoading(false);
+      });
   }, [id]);
 
   const [details, setDetails] = useState(null);

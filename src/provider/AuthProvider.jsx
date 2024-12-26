@@ -20,7 +20,9 @@ function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
   //link
-  const [link, setLink] = useState("http://localhost:3000");
+  const [link, setLink] = useState(
+    "https://assignment-11-server-orpin-beta.vercel.app"
+  );
   // "https://assignment-11-server-orpin-beta.vercel.app"
   // "http://localhost:3000"
 
@@ -45,10 +47,7 @@ function AuthProvider({ children }) {
             .post(`${link}/jwt-auth`, user, {
               withCredentials: true,
             })
-            .then((response) => {
-              toast.success("user authenticated successfully!");
-              // console.log(response);
-            })
+            .then((response) => {})
             .catch((error) => {
               toast.success("user authenticated failed!");
 
@@ -67,25 +66,31 @@ function AuthProvider({ children }) {
     };
   }, []);
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
     setLoading(true);
-    axios
-      .post(`${link}/logout`, {}, { withCredentials: true })
-      .then((response) => {
-        // Clear all client-side cookies
-        document.cookie.split(";").forEach((cookie) => {
-          const eqPos = cookie.indexOf("=");
-          const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-          document.cookie =
-            name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-        });
-        toast.success("Logged out successfully!");
-      })
-      .catch((error) => {
-        toast.error("An error occurred during logout.");
+    try {
+      // Send a logout request to the server
+      await axios.post(`${link}/logout`, {}, { withCredentials: true });
+
+      // Clear all accessible cookies on the client side
+      document.cookie.split(";").forEach((cookie) => {
+        const eqPos = cookie.indexOf("=");
+        const name =
+          eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
+        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
       });
-    return signOut(auth);
+
+      toast.success("Logged out successfully!");
+
+      // Clear authentication state
+      await signOut(auth);
+    } catch (error) {
+      toast.error("An error occurred during logout.");
+    } finally {
+      setLoading(false);
+    }
   };
+
 
   // const logoutUser = () => {
   //   setLoading(true);

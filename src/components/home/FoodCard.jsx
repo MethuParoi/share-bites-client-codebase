@@ -50,7 +50,7 @@ function FoodCard({ food }) {
             handleExplore();
             setDetails(food);
           }}
-          className="w-[100%] h-12 bg-secondary hover:bg-accent text-neutral dark:text-white text-lg font-medium rounded-2xl  flex items-center justify-center mx-auto mt-4"
+          className="w-[100%] h-12 bg-secondary hover:bg-teal-700 text-neutral dark:text-white text-lg font-medium rounded-2xl  flex items-center justify-center mx-auto mt-4"
         >
           See Details
         </button>
