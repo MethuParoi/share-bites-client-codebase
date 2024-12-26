@@ -28,7 +28,7 @@ const ManageFood = () => {
   const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
-    // Fetch both movies and favorites in parallel
+    // Fetch in parallel
     const fetchFood = async () => {
       try {
         const [allFoodRes, addedFoodRes] = await Promise.all([
@@ -41,7 +41,7 @@ const ManageFood = () => {
         const allFood = allFoodRes.data;
         const foodIds = addedFoodRes.data.foods;
 
-        // Filter the favorite movies
+        // Filter the added food
         const addedFood = allFood.filter((food) =>
           foodIds.includes(food.food_id)
         );
@@ -49,7 +49,7 @@ const ManageFood = () => {
         setAddedFood(addedFood);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching favorite movies:", error);
+        console.error("Error fetching food:", error);
         setLoading(false);
       }
     };
@@ -95,8 +95,8 @@ const ManageFood = () => {
       )}
       {/* table */}
       {addedFood.length > 0 && (
-        <div className="w-[90%] xl:max-w-[1300px] mx-auto  overflow-x-scroll  mb-20">
-          <div className="grid grid-cols-6 gap-y-16 justify-items-center w-[1000px] xl:w-[1200px] max-h-[500px] overflow-y-auto overflow-x-scroll mx-auto bg-primary p-4 rounded-xl">
+        <div className="w-[90%] xl:max-w-[1300px] mx-auto  overflow-x-scroll max-h-[500px] overflow-y-auto mb-20">
+          <div className="grid grid-cols-6 gap-y-16 justify-items-center w-[1000px] xl:w-[1200px]  overflow-x-scroll mx-auto bg-primary p-4 rounded-xl">
             <p className="text-lg xl:text-xl  font-semibold text-gray-600">
               Food Name
             </p>

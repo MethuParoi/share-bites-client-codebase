@@ -50,7 +50,9 @@ const EditModal = ({ food_id, foodDetail, setRefetch }) => {
     } finally {
       setIsLoading(false);
       document.getElementById("my_modal_4").close();
+      toast.success("Food updated successfully!");
     }
+    toast.success("Food updated successfully!");
   };
 
   return (

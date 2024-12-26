@@ -33,7 +33,20 @@ const RequestModal = ({ foodDetail }) => {
     }
   }, [foodDetail, reset]);
 
-  const onSubmit = async () => {
+  const onSubmit = async (formData) => {
+    const data = {
+      food_image: foodDetail.food_image,
+      food_name: foodDetail.food_name,
+      food_id: foodDetail._id,
+      donator_email: foodDetail.donator_email,
+      donator_name: foodDetail.donator_name,
+      user_email: user.email,
+      pickup_location: foodDetail.pickup_location,
+      expired_date: foodDetail.expired_date,
+      additional_notes: formData.additional_notes,
+      request_date: new Date().toISOString().split("T")[0],
+      food_status: "requested",
+    };
     try {
       setIsLoading(true);
       // GET request to fetch user food
@@ -41,10 +54,10 @@ const RequestModal = ({ foodDetail }) => {
         withCredentials: true,
       });
       const existingFoods = res.data?.foods || [];
-      // console.log("existingFoods", existingFoods);
+      // console.log("existingFoods", existingFoods._id);
 
-      if (!existingFoods.includes(foodDetail?._id)) {
-        const updatedFoods = [...existingFoods, foodDetail?._id];
+      if (existingFoods) {
+        const updatedFoods = [...existingFoods, data];
         // console.log("id", foodDetail?._id);
 
         // PATCH request to update req food and available status
@@ -75,7 +88,7 @@ const RequestModal = ({ foodDetail }) => {
         await Promise.all([
           axios.put(
             `${link}/add-requested-food`,
-            { user_id: email, foods: [foodDetail?._id] },
+            { user_id: email, foods: [data] },
             { withCredentials: true }
           ),
           axios.patch(
@@ -97,6 +110,7 @@ const RequestModal = ({ foodDetail }) => {
       setIsLoading(false);
       document.getElementById("req_food_modal").close();
     }
+    toast.success("Food requested successfully!");
   };
 
   return (
