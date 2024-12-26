@@ -9,11 +9,7 @@ function FoodCard({ food }) {
     navigate(`/food-details/${food._id}`);
   };
   return (
-    <div
-      className={`card bg-base-100 dark:bg-gray-700 w-80 shadow-xl ${
-        food.food_status === "requested" ? "hidden" : ""
-      }`}
-    >
+    <div className={`card bg-base-100 dark:bg-gray-700 w-80 shadow-xl `}>
       <figure>
         <img
           className="w-full h-60 object-cover"
