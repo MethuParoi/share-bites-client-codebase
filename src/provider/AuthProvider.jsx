@@ -72,15 +72,35 @@ function AuthProvider({ children }) {
     axios
       .post(`${link}/logout`, {}, { withCredentials: true })
       .then((response) => {
+        // Clear all client-side cookies
+        document.cookie.split(";").forEach((cookie) => {
+          const eqPos = cookie.indexOf("=");
+          const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+          document.cookie =
+            name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+        });
         toast.success("Logged out successfully!");
-        // console.log(response);
       })
       .catch((error) => {
         toast.error("An error occurred during logout.");
-        // console.log(error);
       });
     return signOut(auth);
   };
+
+  // const logoutUser = () => {
+  //   setLoading(true);
+  //   axios
+  //     .post(`${link}/logout`, {}, { withCredentials: true })
+  //     .then((response) => {
+  //       toast.success("Logged out successfully!");
+  //       // console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       toast.error("An error occurred during logout.");
+  //       // console.log(error);
+  //     });
+  //   return signOut(auth);
+  // };
 
   const googleSignIn = () => {
     setLoading(true);

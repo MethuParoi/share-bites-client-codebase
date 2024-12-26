@@ -137,7 +137,7 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 text-lg font-medium text-white bg-primary rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-2 text-lg font-medium text-white bg-secondary rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             Login
           </button>
@@ -145,7 +145,7 @@ const Login = () => {
         <div className="flex flex-col gap-y-3 items-center justify-center">
           <button
             onClick={() => handleGoogleSignIn()}
-            className="w-full flex justify-center items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-secondary rounded-md hover:bg-primary focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full flex justify-center items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-teal-700 rounded-md hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             <FaGoogle />
             <p className="text-lg">Login with Google</p>

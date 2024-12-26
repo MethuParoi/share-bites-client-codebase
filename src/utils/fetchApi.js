@@ -1,8 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { toast } from "react-toastify";
-import { AuthContext } from "../provider/AuthProvider";
-import { useContext } from "react";
+
 
 export function useAllFood() {
   const {
@@ -67,81 +65,23 @@ export function useSortedFood() {
   return { isLoading, sortedFood, error };
 }
 
-// Add new food
+// Mutation to delete food
+export function useDeleteFood() {
+  const queryClient = useQueryClient();
 
-
-
-
-// export function useAddFood() {
-//   const { user } = useContext(AuthContext);
-//   const queryClient = useQueryClient();
-
-//   return useMutation(
-//     async (foodData) => {
-//       const response = await axios
-//         .post(
-//           "https://assignment-11-server-orpin-beta.vercel.app/add-food",
-//           foodData,
-//           { withCredentials: true }
-//         )
-//         .then(() => {
-//           axios
-//             .get(
-//               `https://assignment-11-server-orpin-beta.vercel.app/get-user-food/${user.email}`,
-//               { withCredentials: true }
-//             )
-//             .then((res) => {
-//               const existingFoods = res.data?.foods || [];
-
-//               if (!existingFoods.includes(id)) {
-//                 const updatedFoods = [...existingFoods, id];
-
-//                 // Update if the user already exists
-//                 axios
-//                   .patch(
-//                     `https://assignment-11-server-orpin-beta.vercel.app/update-user-food/${user.email}`,
-//                     {
-//                       foods: updatedFoods,
-//                     },
-//                     { withCredentials: true }
-//                   )
-//                   .then((res) => {
-//                     if (res.status === 200) {
-//                       toast.success("Food added successfully!");
-//                     }
-//                   });
-//               }
-//             })
-//             .catch((err) => {
-//               // If the user does not exist, create a new record
-//               if (err.response && err.response.status === 404) {
-//                 axios
-//                   .put(
-//                     `https://assignment-10-server-three-theta.vercel.app/add-user-food`,
-//                     {
-//                       user_id: user.email,
-//                       foods: [id],
-//                     },
-//                     { withCredentials: true }
-//                   )
-//                   .then((res) => {
-//                     if (res.status === 200) {
-//                       toast.success("Food added successfully!");
-//                     }
-//                   });
-//               }
-//             });
-//         })
-//         .catch((err) => {
-//           toast.error("An error occurred. Please try again.");
-//         });
-//       return response.data;
-//     },
-//     {
-//       onSuccess: () => {
-//         // Invalidate and refetch
-//         queryClient.invalidateQueries(["featuredFood", "allFood"]);
-//       },
-//     }
-//   );
-// }
+  return useMutation(
+    async (food_id) => {
+      const response = await axios.delete(
+        `https://assignment-11-server-orpin-beta.vercel.app/delete-food/${food_id}`,
+        { withCredentials: true }
+      );
+      return response.data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["allFood"]);
+        queryClient.invalidateQueries(["featuredFood"]);
+      },
+    }
+  );
+}
