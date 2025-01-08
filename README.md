@@ -1,5 +1,13 @@
 # ShareBites
 
+<div align="center">
+
+![Header](https://lrbogqzvnkxhatqgtwtr.supabase.co/storage/v1/object/public/images/share-bites-01.png)
+
+![Header](https://lrbogqzvnkxhatqgtwtr.supabase.co/storage/v1/object/public/images/share-bites-02.png?t=2025-01-08T07%3A33%3A07.885Z)
+
+</div>
+
 **Live Demo:** [ShareBites Live Demo](https://share-bites-9867f.web.app/)
 
 
