@@ -24,7 +24,7 @@ const RequestModal = ({ foodDetail }) => {
         food_id: foodDetail._id,
         donator_email: foodDetail.donator_email,
         donator_name: foodDetail.donator_name,
-        user_email: user.email,
+        user_email: user?.email,
         pickup_location: foodDetail.pickup_location,
         expired_date: foodDetail.expired_date,
         additional_notes: foodDetail.additional_notes,
@@ -40,7 +40,7 @@ const RequestModal = ({ foodDetail }) => {
       food_id: foodDetail._id,
       donator_email: foodDetail.donator_email,
       donator_name: foodDetail.donator_name,
-      user_email: user.email,
+      user_email: user?.email,
       pickup_location: foodDetail.pickup_location,
       expired_date: foodDetail.expired_date,
       additional_notes: formData.additional_notes,
@@ -63,7 +63,7 @@ const RequestModal = ({ foodDetail }) => {
         // PATCH request to update req food and available status
         await Promise.all([
           axios.patch(
-            `${link}/update-requested-food/${user.email}`,
+            `${link}/update-requested-food/${user?.email}`,
             { foods: updatedFoods },
             { withCredentials: true }
           ),

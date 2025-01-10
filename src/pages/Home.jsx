@@ -25,19 +25,19 @@ const Home = () => {
         {isLoading && <Loader />}
       </div>
       <HeroSection />
-      <h2 className="text-3xl font-semibold text-center mt-16 mb-8 border-b-2 border-gray-500 w-[280px] mx-auto">
+      <h2 className="text-3xl font-semibold text-center mt-10 mb-8 border-b-2 border-gray-500 w-[280px] mx-auto">
         Featured Food
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-y-16 justify-items-center my-16 xl:max-w-[1300px] mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-16 justify-items-center my-16 xl:max-w-[1300px] mx-auto">
         {featuredFood &&
           featuredFood.map((food) => <FoodCard key={food._id} food={food} />)}
-        <div className=" justify-items-center">
-          <Button
-            type={"standard"}
-            label={"Show All"}
-            onClick={() => navigate("/available-foods")}
-          />
-        </div>
+      </div>
+      <div className=" flex justify-center mb-16">
+        <Button
+          type={"standard"}
+          label={"Show All"}
+          onClick={() => navigate("/available-foods")}
+        />
       </div>
       {/* donation section */}
       <div className=" bg-gray-200 w-screen">

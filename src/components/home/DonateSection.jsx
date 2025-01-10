@@ -25,7 +25,15 @@ const DonateSection = () => {
           rice, wheat, vegetables, fruits, etc.
         </p>
         <div className="flex justify-start items-center mt-8">
-          <button className="bg-secondary hover:bg-teal-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg">
+          <button
+            onClick={() =>
+              window.open(
+                "https://www.savethechildren.org/us/ways-to-help/ways-to-give",
+                "_blank"
+              )
+            }
+            className="bg-secondary hover:bg-teal-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg"
+          >
             Donate Now
           </button>
         </div>

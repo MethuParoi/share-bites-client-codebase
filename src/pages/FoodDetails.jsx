@@ -86,7 +86,11 @@ const FoodDetails = () => {
 
         <div
           onClick={() => {
-            document.getElementById("req_food_modal").showModal();
+            if (user?.email) {
+              document.getElementById("req_food_modal").showModal();
+            } else {
+              navigate("/login");
+            }
           }}
           className="flex items-center sm:justify-start justify-center mt-4 mb-5 md:mb-0"
         >

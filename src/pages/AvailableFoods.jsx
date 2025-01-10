@@ -89,7 +89,9 @@ const AvailableFoods = () => {
       </h2>
       <div
         className={`grid grid-cols-1 sm:grid-cols-2 ${
-          layout ? "lg:grid-cols-2" : "lg:grid-cols-3"
+          layout
+            ? "lg:grid-cols-2 xl:lg:grid-cols-3"
+            : "lg:grid-cols-3 xl:lg:grid-cols-4"
         } gap-y-16 justify-items-center my-16 xl:max-w-[1300px] mx-auto`}
       >
         {sort &&

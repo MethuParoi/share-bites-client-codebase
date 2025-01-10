@@ -26,7 +26,7 @@ function Navbar({ toggleTheme, currentTheme }) {
   };
 
   return (
-    <div className="navbar bg-secondary pr-6">
+    <div className="navbar bg-secondary pr-6 fixed top-0 left-0 right-0 z-50 h-20">
       <div className="navbar-start">
         <div className="dropdown z-20">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
