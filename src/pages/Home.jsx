@@ -8,6 +8,7 @@ import FoodCard from "../components/home/FoodCard";
 import Button from "../components/ui/Button";
 import DonateSection from "../components/home/DonateSection";
 import VolunteerSection from "../components/home/VolunteerSection";
+import Testimonials from "../components/home/Testimonials";
 
 const Home = () => {
   const { isLoading, featuredFood, error } = useFeaturedFood();
@@ -46,6 +47,10 @@ const Home = () => {
       {/* volunteer section */}
       <div>
         <VolunteerSection />
+      </div>
+      {/* testimonials section */}
+      <div className=" bg-gray-200 w-screen">
+        <Testimonials />
       </div>
     </div>
   );
