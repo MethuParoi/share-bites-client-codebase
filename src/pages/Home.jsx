@@ -41,15 +41,15 @@ const Home = () => {
         />
       </div>
       {/* donation section */}
-      <div className=" bg-gray-200 w-screen">
+      <div className=" bg-gray-200 dark:bg-base-100 w-screen">
         <DonateSection />
       </div>
       {/* volunteer section */}
-      <div>
+      <div className="dark:bg-primary w-screen">
         <VolunteerSection />
       </div>
       {/* testimonials section */}
-      <div className=" bg-gray-200 w-screen">
+      <div className=" bg-gray-200 dark:bg-base-100 w-screen">
         <Testimonials />
       </div>
     </div>

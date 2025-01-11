@@ -6,13 +6,13 @@ const VolunteerSection = () => {
       id="donation-section"
     >
       <div className="w-[90vw] md:w-[40vw]">
-        <p className="amatic-font text-secondary sm:text-5xl text-4xl font-semibold">
+        <p className="amatic-font text-secondary dark:text-gray-400 sm:text-5xl text-4xl font-semibold">
           Become A Volunteer
         </p>
-        <h2 className="sm:text-5xl text-4xl font-semibold mt-5 mb-8 quicksand-font text-gray-700">
+        <h2 className="sm:text-5xl text-4xl font-semibold mt-5 mb-8 quicksand-font text-gray-700 dark:text-gray-200">
           Why We Need You
         </h2>
-        <p className="text-lg font-medium text-gray-600 ">
+        <p className="text-lg font-medium text-gray-600 dark:text-gray-300">
           We need volunteers to help us in collecting food from different
           locations and distributing them to the needy people. You can also help
           us in managing food items in our food bank.
@@ -25,7 +25,7 @@ const VolunteerSection = () => {
                 "_blank"
               )
             }
-            className="bg-secondary hover:bg-teal-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg"
+            className="bg-secondary dark:bg-gray-500 dark:hover:bg-gray-600 hover:bg-teal-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg"
           >
             Join Now
           </button>

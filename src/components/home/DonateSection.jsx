@@ -13,13 +13,13 @@ const DonateSection = () => {
         />
       </div>
       <div className="w-[90vw] md:w-[40vw]">
-        <p className="amatic-font text-secondary sm:text-5xl text-4xl font-semibold">
+        <p className="amatic-font text-secondary dark:text-gray-400 sm:text-5xl text-4xl font-semibold">
           SAFE + EASY DONATIONS
         </p>
-        <h2 className="sm:text-5xl text-4xl font-semibold mt-5 mb-8 quicksand-font text-gray-700">
+        <h2 className="sm:text-5xl text-4xl font-semibold mt-5 mb-8 quicksand-font text-gray-700 dark:text-gray-200">
           Helping Today, Helping <span className="xl:block">Tomorrow</span>
         </h2>
-        <p className="text-lg font-medium text-gray-600 ">
+        <p className="text-lg font-medium text-gray-600 dark:text-gray-300">
           Your donation can help us to provide food to the needy people. We
           accept all types of food donations. You can donate food items like
           rice, wheat, vegetables, fruits, etc.
@@ -32,7 +32,7 @@ const DonateSection = () => {
                 "_blank"
               )
             }
-            className="bg-secondary hover:bg-teal-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg"
+            className="bg-secondary hover:bg-teal-600  dark:bg-gray-500 dark:hover:bg-gray-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg"
           >
             Donate Now
           </button>

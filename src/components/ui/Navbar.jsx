@@ -47,7 +47,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-secondary rounded-box z-[1] mt-3 w-52 p-2 shadow "
+            className="menu menu-sm dropdown-content bg-secondary rounded-box z-[1] mt-3 w-52 p-2 shadow dark:text-gray-200"
           >
             <li>
               <button
@@ -114,15 +114,17 @@ function Navbar({ toggleTheme, currentTheme }) {
           className="flex items-center gap-x-2 text-sm sm:text-4xl font-semibold text-neutral"
         >
           <img className="w-20 h-20" src={logo} alt="" />
-          <p className="hidden md:block lg:hidden xl:block">ShareBites</p>
+          <p className="hidden md:block lg:hidden xl:block  dark:text-gray-300">
+            ShareBites
+          </p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 ">
           <li>
             <button
               onClick={() => navigate("/")}
-              className={`text-neutral ${
+              className={`text-neutral dark:text-gray-300 ${
                 location.pathname === "/" && "active"
               }`}
             >
@@ -133,7 +135,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           <li>
             <button
               onClick={() => navigate("/available-foods")}
-              className={`text-neutral ${
+              className={`text-neutral dark:text-gray-300 ${
                 location.pathname === "/available-foods" && "active"
               }`}
             >
@@ -143,7 +145,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           <li>
             <button
               onClick={() => navigate("/add-food")}
-              className={`text-neutral ${
+              className={`text-neutral dark:text-gray-300 ${
                 location.pathname === "/add-food" && "active"
               }`}
             >
@@ -153,7 +155,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           <li>
             <button
               onClick={() => navigate("/manage-food")}
-              className={`text-neutral ${
+              className={`text-neutral dark:text-gray-300 ${
                 location.pathname === "/manage-food" && "active"
               }`}
             >
@@ -163,7 +165,7 @@ function Navbar({ toggleTheme, currentTheme }) {
           <li>
             <button
               onClick={() => navigate("/food-requests")}
-              className={`text-neutral ${
+              className={`text-neutral dark:text-gray-300 ${
                 location.pathname === "/food-requests" && "active"
               }`}
             >

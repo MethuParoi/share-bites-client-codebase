@@ -84,21 +84,22 @@ const FoodDetails = () => {
         </div>
         <p className="line-clamp-5 ">{details?.additional_notes}</p>
 
-        <div
-          onClick={() => {
-            if (user?.email) {
-              document.getElementById("req_food_modal").showModal();
-            } else {
-              navigate("/login");
-            }
-          }}
-          className="flex items-center sm:justify-start justify-center mt-4 mb-5 md:mb-0"
-        >
-          <Button label={"Request Food"} type={"standard"} onClick={() => {}} />
+        <div className="flex items-center sm:justify-start justify-center mt-4 mb-5 md:mb-0">
+          <Button
+            onClick={() => {
+              if (user?.email) {
+                document.getElementById("req_food_modal").showModal();
+              } else {
+                navigate("/login");
+              }
+            }}
+            label={"Request Food"}
+            type={"standard"}
+          />
         </div>
 
         {/* donator details */}
-        <div className="flex items-center gap-x-4 mb-10 md:mt-20">
+        <div className="flex items-center gap-x-4 mb-10 md:mt-5">
           <h1 className="text-xl font-semibold">Donated By:</h1>
           <div className="flex items-center gap-x-2">
             <img

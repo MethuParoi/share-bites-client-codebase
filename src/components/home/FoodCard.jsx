@@ -27,19 +27,23 @@ function FoodCard({ food }) {
           </div>
           <div className="flex items-center gap-x-2">
             <IoLocation className="text-xl" />
-            <p className="text-gray-600">{food.pickup_location}</p>
+            <p className="text-gray-600 dark:text-white">
+              {food.pickup_location}
+            </p>
           </div>
         </div>
 
         <div className="flex items-center justify-around my-2">
           <div className="flex items-center gap-x-2">
             <AiFillProduct className="text-xl" />
-            <p className="text-gray-600">{food.food_quantity} unit</p>
+            <p className="text-gray-600 dark:text-white">
+              {food.food_quantity} unit
+            </p>
           </div>
 
           <div className="flex items-center gap-x-2">
             <CiCalendarDate className="text-xl" />
-            <p className="text-gray-600">{food.expired_date}</p>
+            <p className="text-gray-600 dark:text-white">{food.expired_date}</p>
           </div>
         </div>
 
@@ -48,7 +52,7 @@ function FoodCard({ food }) {
             handleExplore();
             setDetails(food);
           }}
-          className="w-[100%] h-12 bg-secondary hover:bg-teal-700 text-neutral dark:text-white text-lg font-medium rounded-2xl  flex items-center justify-center mx-auto mt-4"
+          className="w-[100%] h-12 bg-secondary hover:bg-teal-700 text-neutral dark:bg-gray-500 dark:hover:bg-gray-600 dark:text-white text-lg font-medium rounded-2xl  flex items-center justify-center mx-auto mt-4"
         >
           See Details
         </button>
