@@ -32,7 +32,7 @@ const DonateSection = () => {
                 "_blank"
               )
             }
-            className="bg-secondary hover:bg-teal-600  dark:bg-gray-500 dark:hover:bg-gray-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg"
+            className="bg-secondary hover:bg-teal-700  dark:bg-gray-500 dark:hover:bg-gray-600 text-white text-2xl font-semibold px-5 py-2 rounded-lg"
           >
             Donate Now
           </button>
