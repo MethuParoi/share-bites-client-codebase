@@ -29,7 +29,7 @@ const FoodRow = ({ food, setFoodId, set_id, setFood_id, setFoodDetail }) => {
   };
 
   return (
-    <div className="grid grid-cols-6 gap-y-4 justify-items-center w-[1000px] xl:w-[1200px] mx-auto bg-primary p-4 my-4 rounded-xl">
+    <div className="grid grid-cols-5 gap-y-4 justify-items-center w-[1000px] xl:w-[1200px] mx-auto bg-primary p-4 my-4 rounded-xl">
       <p className="text-lg xl:text-xl font-medium text-gray-600 line-clamp-1">
         {food.food_name}
       </p>
