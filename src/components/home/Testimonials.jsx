@@ -70,7 +70,7 @@ const Testimonials = () => {
         <h2 className="sm:text-5xl text-4xl font-semibold mt-5 mb-8 quicksand-font text-gray-700 dark:text-gray-200">
           What People Say <span className="xl:block">About Us</span>
         </h2>
-        <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
+        <p className="text-lg font-medium text-gray-600 dark:text-gray-300">
           We continually experiment. We fail quickly and productively. We use
           data and feedback to guide our course.
         </p>
