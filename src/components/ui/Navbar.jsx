@@ -180,7 +180,7 @@ function Navbar({ toggleTheme, currentTheme }) {
             user ? handleLogout() : null;
             user ? navigate("/") : navigate("/login");
           }}
-          className="text-gray-600 dark:text-white hover:text-gray-800 btn bg-primary border-transparent hover:bg-accent hidden md:block"
+          className="text-gray-500 dark:text-white hover:text-gray-800 btn bg-primary border-transparent hover:bg-accent hidden md:block"
         >
           {user ? "Logout" : "Login"}
         </button>
